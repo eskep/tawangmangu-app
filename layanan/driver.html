@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Driver - Tawangmangu App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Driver Service</h1>
+    <nav>
+      <a href="../index.html">Home</a> |
+      <a href="belanja.html">Belanja</a> |
+      <a href="booking.html">Booking</a> |
+      <a href="kurir.html">Kurir</a> |
+      <a href="infoevent.html">Info Event</a> |
+      <a href="layanan-lainnya.html">Lainnya</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Pilih Motor</h2>
+    <div class="motor-list">
+      <div class="motor-item">
+        <img src="../assets/motor1.jpg" alt="Motor Bebek" />
+        <h3>Motor Bebek</h3>
+        <p>Motor praktis dan hemat bahan bakar.</p>
+        <button onclick="orderMotor('Motor Bebek')">Pesan Motor Bebek</button>
+      </div>
+      <div class="motor-item">
+        <img src="../assets/motor2.jpg" alt="Motor Matic" />
+        <h3>Motor Matic</h3>
+        <p>Motor matic nyaman untuk perjalanan santai.</p>
+        <button onclick="orderMotor('Motor Matic')">Pesan Motor Matic</button>
+      </div>
+      <div class="motor-item">
+        <img src="../assets/motor3.jpg" alt="Motor Sport" />
+        <h3>Motor Sport</h3>
+        <p>Motor sport dengan performa tinggi dan keren.</p>
+        <button onclick="orderMotor('Motor Sport')">Pesan Motor Sport</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>bs escape © 2025</p>
+  </footer>
+
+  <script>
+    function orderMotor(motor) {
+      // Buka form pesanan atau kirim ke WhatsApp, contoh:
+      const pesan = `Halo, saya ingin pesan layanan driver dengan motor: ${motor}`;
+      const waLink = `https://wa.me/6281234567890?text=${encodeURIComponent(pesan)}`;
+      window.open(waLink, '_blank');
+    }
+  </script>
+</body>
+</html>
