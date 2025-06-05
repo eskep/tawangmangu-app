@@ -4,56 +4,187 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Driver - Tawangmangu App</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Reset dan dasar */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: #f9f9f9;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    /* Grid container untuk produk */
+    .driver-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Kartu produk motor */
+    .driver-item {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .driver-item:hover {
+      box-shadow: 0 6px 14px rgb(0 0 0 / 0.15);
+    }
+    .driver-item img {
+      width: 100%;
+      max-height: 140px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .driver-item h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: #34495e;
+      text-align: center;
+    }
+    .driver-item p.price {
+      font-weight: 600;
+      color: #27ae60;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+    .driver-item button {
+      padding: 10px 20px;
+      background-color: #2980b9;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+    .driver-item button:hover {
+      background-color: #1c5980;
+    }
+
+    /* Pesan popup */
+    #message {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #27ae60;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+    #message.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Driver Service</h1>
-    <nav>
-      <a href="../index.html">Home</a> |
-      <a href="belanja.html">Belanja</a> |
-      <a href="booking.html">Booking</a> |
-      <a href="kurir.html">Kurir</a> |
-      <a href="infoevent.html">Info Event</a> |
-      <a href="layanan-lainnya.html">Lainnya</a>
-    </nav>
-  </header>
+  <h1>Pilih Motor untuk Driver</h1>
+  <div class="driver-grid" id="driverGrid">
+    <!-- Produk motor akan dimuat di sini oleh JS -->
+  </div>
 
-  <main>
-    <h2>Pilih Motor</h2>
-    <div class="motor-list">
-      <div class="motor-item">
-        <img src="../assets/motor1.jpg" alt="Motor Bebek" />
-        <h3>Motor Bebek</h3>
-        <p>Motor praktis dan hemat bahan bakar.</p>
-        <button onclick="orderMotor('Motor Bebek')">Pesan Motor Bebek</button>
-      </div>
-      <div class="motor-item">
-        <img src="../assets/motor2.jpg" alt="Motor Matic" />
-        <h3>Motor Matic</h3>
-        <p>Motor matic nyaman untuk perjalanan santai.</p>
-        <button onclick="orderMotor('Motor Matic')">Pesan Motor Matic</button>
-      </div>
-      <div class="motor-item">
-        <img src="../assets/motor3.jpg" alt="Motor Sport" />
-        <h3>Motor Sport</h3>
-        <p>Motor sport dengan performa tinggi dan keren.</p>
-        <button onclick="orderMotor('Motor Sport')">Pesan Motor Sport</button>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <p>bs escape © 2025</p>
-  </footer>
+  <div id="message">Motor dipilih!</div>
 
   <script>
-    function orderMotor(motor) {
-      // Buka form pesanan atau kirim ke WhatsApp, contoh:
-      const pesan = `Halo, saya ingin pesan layanan driver dengan motor: ${motor}`;
-      const waLink = `https://wa.me/6281234567890?text=${encodeURIComponent(pesan)}`;
-      window.open(waLink, '_blank');
+    // Data motor, bisa dikembangkan dari API atau file JSON
+    const motors = [
+      {
+        id: 1,
+        name: "Honda Beat",
+        price: 25000,
+        img: "https://i.ibb.co/3CZ2BxJ/honda-beat.png"
+      },
+      {
+        id: 2,
+        name: "Yamaha Mio",
+        price: 27000,
+        img: "https://i.ibb.co/kcJ3K5L/yamaha-mio.png"
+      },
+      {
+        id: 3,
+        name: "Suzuki Nex",
+        price: 23000,
+        img: "https://i.ibb.co/YtG7H3T/suzuki-nex.png"
+      },
+      {
+        id: 4,
+        name: "Vespa LX",
+        price: 45000,
+        img: "https://i.ibb.co/h8HYXJ4/vespa-lx.png"
+      }
+    ];
+
+    const driverGrid = document.getElementById('driverGrid');
+    const message = document.getElementById('message');
+
+    // Fungsi tampilkan produk motor
+    function renderMotors() {
+      motors.forEach(motor => {
+        const card = document.createElement('div');
+        card.className = 'driver-item';
+
+        card.innerHTML = `
+          <img src="${motor.img}" alt="${motor.name}" />
+          <h3>${motor.name}</h3>
+          <p class="price">Rp ${motor.price.toLocaleString('id-ID')}</p>
+          <button data-id="${motor.id}">Pilih Motor</button>
+        `;
+
+        driverGrid.appendChild(card);
+      });
     }
+
+    // Fungsi tampilkan pesan singkat
+    function showMessage(text) {
+      message.textContent = text;
+      message.classList.add('show');
+      setTimeout(() => {
+        message.classList.remove('show');
+      }, 2000);
+    }
+
+    // Inisialisasi
+    renderMotors();
+
+    // Event delegation untuk tombol pilih motor
+    driverGrid.addEventListener('click', e => {
+      if(e.target.tagName === 'BUTTON') {
+        const id = e.target.getAttribute('data-id');
+        const selectedMotor = motors.find(m => m.id == id);
+        if(selectedMotor) {
+          // Contoh aksi: alert atau simpan pilihan ke localStorage dll
+          showMessage(`Motor "${selectedMotor.name}" berhasil dipilih!`);
+          console.log("Motor dipilih:", selectedMotor);
+        }
+      }
+    });
   </script>
 </body>
 </html>
