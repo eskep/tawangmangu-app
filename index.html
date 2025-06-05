@@ -2,247 +2,146 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tawangmangu App - Layanan Lengkap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tawangmangu App</title>
   <style>
-        body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0; background: #f5f7fa;
-      color: #333;
-    }
-    header {
-  background: #2b7bff;
-  color: white;
-  padding: 15px 0 30px;
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  height: 70px; /* kalau kamu pakai height tetap */
-}
-
-section {
-  margin-bottom: 50px;
-  scroll-margin-top: 80px; /* ini penting supaya scroll ke anchor pas */
-}
-
-
-main {
-  max-width: 960px;
-  margin: 40px auto 60px; /* tambah margin atas */
-  padding: 0 15px;
-}
-    section {
-      margin-bottom: 50px;
-    }
-    h2 {
-      color: #2b7bff;
-      margin-bottom: 20px;
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f3f6fa;
+      margin: 0;
+      padding: 0;
       text-align: center;
     }
-    .card-list {
+
+    header {
+      background-color: #2b7bff;
+      color: white;
+      padding: 30px 20px;
+      font-size: 26px;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .menu {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
       justify-content: center;
+      margin: 40px 0 20px;
+      gap: 20px;
+      padding: 0 20px;
     }
+
     .card {
       background: white;
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      width: 280px;
-      text-align: center;
-      padding-bottom: 15px;
-      overflow: hidden;
-      transition: transform 0.2s ease;
+      padding: 25px;
+      width: 140px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.2s, box-shadow 0.3s;
     }
+
     .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
     }
-    .card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 12px 12px 0 0;
+
+    .card span {
+      font-size: 36px;
+      display: block;
+      margin-bottom: 10px;
     }
+
     .card p {
-      margin: 10px 0 5px;
-      font-weight: bold;
-      min-height: 48px; /* agar kartu seragam */
+      margin: 0;
+      font-size: 16px;
+      font-weight: 500;
     }
-    .btn-wa {
+
+    .section {
+      display: none;
+      margin: 30px auto;
+      padding: 20px;
+      max-width: 600px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+    }
+
+    h2 {
+      color: #2b7bff;
+      margin-bottom: 15px;
+    }
+
+    .back-button {
+      margin-top: 20px;
       display: inline-block;
-      background: #25d366;
-      color: white;
-      padding: 10px 20px;
-      margin-top: 12px;
-      border-radius: 30px;
-      text-decoration: none;
+      color: #2b7bff;
+      text-decoration: underline;
+      cursor: pointer;
       font-weight: bold;
-      user-select: none;
-    }
-    .btn-wa:hover {
-      background: #1ebe57;
-    }
-    .section-desc {
-      text-align: center;
-      margin-bottom: 30px;
-      font-style: italic;
-      color: #666;
     }
   </style>
 </head>
 <body>
-  <header>
-    Tawangmangu App - Layanan Dalam Genggaman
-  </header>
-  <header>
-  <div style="max-width:960px; margin:auto; display:flex; justify-content:center; gap:20px; flex-wrap:wrap; padding:10px 0;">
-    <a href="#driver" style="color:white; text-decoration:none; font-weight:bold;">Driver</a>
-    <a href="#belanja" style="color:white; text-decoration:none; font-weight:bold;">Belanja</a>
-    <a href="#booking" style="color:white; text-decoration:none; font-weight:bold;">Booking</a>
-    <a href="#kurir" style="color:white; text-decoration:none; font-weight:bold;">Kurir</a>
-    <a href="#lainnya" style="color:white; text-decoration:none; font-weight:bold;">Lainnya</a>
+
+  <header>Tawangmangu App</header>
+
+  <div class="menu" id="menu">
+    <div class="card" onclick="showSection('driver')">
+      <span>🚗</span><p>Driver</p>
+    </div>
+    <div class="card" onclick="showSection('belanja')">
+      <span>🛒</span><p>Belanja</p>
+    </div>
+    <div class="card" onclick="showSection('booking')">
+      <span>📅</span><p>Booking</p>
+    </div>
+    <div class="card" onclick="showSection('kurir')">
+      <span>📦</span><p>Kurir</p>
+    </div>
+    <div class="card" onclick="window.location.href='https://wa.me/62xxxxxxxxxx'">
+      <span>💬</span><p>Lainnya</p>
+    </div>
   </div>
-</header>
 
-  <main>
+  <!-- Sections -->
+  <div id="driver" class="section">
+    <h2>Layanan Driver</h2>
+    <p>Contoh produk: Ojek motor, mobil, antar jemput wisata.</p>
+    <div class="back-button" onclick="goBack()">← Kembali ke Menu</div>
+  </div>
 
-    <section id="driver">
-      <h2>Driver & Motor</h2>
-      <p class="section-desc">Layanan antar jemput dan wisata menggunakan mobil dan motor terpercaya.</p>
-      <div class="card-list" id="list-driver"></div>
-    </section>
+  <div id="belanja" class="section">
+    <h2>Layanan Belanja</h2>
+    <p>Contoh produk: Belanja sayur, belanja toko, keperluan rumah tangga.</p>
+    <div class="back-button" onclick="goBack()">← Kembali ke Menu</div>
+  </div>
 
-    <section id="belanja">
-      <h2>Belanja</h2>
-      <p class="section-desc">Pesan kebutuhan sehari-hari dari toko dan pasar lokal.</p>
-      <div class="card-list" id="list-belanja"></div>
-    </section>
+  <div id="booking" class="section">
+    <h2>Layanan Booking</h2>
+    <p>Contoh produk: Booking villa, homestay, tempat wisata lokal.</p>
+    <div class="back-button" onclick="goBack()">← Kembali ke Menu</div>
+  </div>
 
-    <section id="booking">
-      <h2>Booking</h2>
-      <p class="section-desc">Booking tempat wisata, penginapan, dan paket wisata mudah dan cepat.</p>
-      <div class="card-list" id="list-booking"></div>
-    </section>
-
-    <section id="kurir">
-      <h2>Kurir</h2>
-      <p class="section-desc">Layanan pengiriman barang dengan kurir cepat dan aman.</p>
-      <div class="card-list" id="list-kurir"></div>
-    </section>
-
-    <section id="lainnya">
-      <h2>Lainnya</h2>
-      <p class="section-desc">Untuk layanan lain, silakan langsung hubungi WhatsApp kami.</p>
-      <div style="text-align:center;">
-        <a href="https://wa.me/6281234567899" target="_blank" class="btn-wa" style="font-size:18px; padding:15px 30px;">Hubungi WA Layanan Lainnya</a>
-      </div>
-    </section>
-
-  </main>
+  <div id="kurir" class="section">
+    <h2>Layanan Kurir</h2>
+    <p>Contoh produk: Pengiriman barang, dokumen, makanan lokal.</p>
+    <div class="back-button" onclick="goBack()">← Kembali ke Menu</div>
+  </div>
 
   <script>
-    // Data layanan Driver & Motor
-    const driverData = [
-      {
-        img: "https://via.placeholder.com/280x160?text=Toyota+Avanza",
-        jenis: "Mobil - Toyota Avanza",
-        wa: "6281234567890"
-      },
-      {
-        img: "https://via.placeholder.com/280x160?text=Daihatsu+Xenia",
-        jenis: "Mobil - Daihatsu Xenia",
-        wa: "6281234567891"
-      },
-      {
-        img: "https://via.placeholder.com/280x160?text=Honda+Vario+150",
-        jenis: "Motor - Honda Vario 150",
-        wa: "6281234567892"
-      },
-      {
-        img: "https://via.placeholder.com/280x160?text=Yamaha+NMax",
-        jenis: "Motor - Yamaha NMax",
-        wa: "6281234567893"
-      }
-    ];
-
-    // Data layanan Belanja
-    const belanjaData = [
-      {
-        img: "https://via.placeholder.com/280x160?text=Beras+Premium",
-        jenis: "Beras Premium 5kg",
-        wa: "6281234567801"
-      },
-      {
-        img: "https://via.placeholder.com/280x160?text=Sayur+Segar",
-        jenis: "Sayur Segar Organik",
-        wa: "6281234567802"
-      },
-      {
-        img: "https://via.placeholder.com/280x160?text=Buah+Musiman",
-        jenis: "Buah Musiman Segar",
-        wa: "6281234567803"
-      }
-    ];
-
-    // Data layanan Booking
-    const bookingData = [
-      {
-        img: "https://via.placeholder.com/280x160?text=Penginapan+Villa",
-        jenis: "Booking Penginapan Villa",
-        wa: "6281234567811"
-      },
-      {
-        img: "https://via.placeholder.com/280x160?text=Wisata+Air+Terjun",
-        jenis: "Booking Wisata Air Terjun",
-        wa: "6281234567812"
-      },
-      {
-        img: "https://via.placeholder.com/280x160?text=Paket+Wisata+Tawangmangu",
-        jenis: "Paket Wisata Tawangmangu",
-        wa: "6281234567813"
-      }
-    ];
-
-    // Data layanan Kurir
-    const kurirData = [
-      {
-        img: "https://via.placeholder.com/280x160?text=Kurir+Reguler",
-        jenis: "Kurir Reguler",
-        wa: "6281234567821"
-      },
-      {
-        img: "https://via.placeholder.com/280x160?text=Kurir+Express",
-        jenis: "Kurir Express",
-        wa: "6281234567822"
-      },
-      {
-        img: "https://via.placeholder.com/280x160?text=Kurir+Dokumen",
-        jenis: "Kurir Dokumen",
-        wa: "6281234567823"
-      }
-    ];
-
-    // Fungsi buat kartu layanan
-    function buatKartu(data) {
-      return data.map(item => `
-        <div class="card">
-          <img src="${item.img}" alt="${item.jenis}" />
-          <p>${item.jenis}</p>
-          <a href="https://wa.me/${item.wa}" target="_blank" class="btn-wa">Hubungi via WA</a>
-        </div>
-      `).join('');
+    function showSection(id) {
+      document.getElementById('menu').style.display = 'none';
+      document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
     }
 
-    // Render semua section
-    document.getElementById('list-driver').innerHTML = buatKartu(driverData);
-    document.getElementById('list-belanja').innerHTML = buatKartu(belanjaData);
-    document.getElementById('list-booking').innerHTML = buatKartu(bookingData);
-    document.getElementById('list-kurir').innerHTML = buatKartu(kurirData);
+    function goBack() {
+      document.querySelectorAll('.section').forEach(sec => sec.style.display = 'none');
+      document.getElementById('menu').style.display = 'flex';
+    }
   </script>
+
 </body>
 </html>
